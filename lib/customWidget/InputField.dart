@@ -55,8 +55,8 @@ class StateInput extends State<InputIt> {
 
 
         style: const TextStyle(
-          color: Colors.black
-
+          color: Colors.black,
+            fontFamily: 'ubantu'
         ),
 
           cursorColor:Color(0xFF1E1E1E),

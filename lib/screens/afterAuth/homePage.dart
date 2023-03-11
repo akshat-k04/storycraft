@@ -12,6 +12,7 @@ import '../../Providers/Md.dart';
 import '../../Providers/color.dart';
 import 'CreateMDFile.dart';
 import 'Profile.dart';
+import 'goal.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -24,7 +25,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomeState extends State<HomePage> {
-
+  String dropdownValue = 'Date(newest to oldest)';
   final TextEditingController _query = TextEditingController();
 
 
@@ -69,262 +70,314 @@ class HomeState extends State<HomePage> {
 
         },
         child: Container(
-          decoration:  BoxDecoration(
-            color: Color(colrPrder.color),
+        decoration:  BoxDecoration(
+          color: Color(colrPrder.color),
 
-          ),
-          child: Scaffold(
-            backgroundColor: Colors.transparent
-              ,
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.transparent
+            ,
 
-            floatingActionButton: (!MDProvid.longprs)?Column(
+          floatingActionButton: (!MDProvid.longprs)?Column(
+            children: [
+              Expanded(child: SizedBox()),
+              FloatingActionButton(
+                heroTag: "TODO",
+                tooltip: "TODOS",
+                onPressed: () async{
+                  await Future.delayed(const Duration(milliseconds: 100)) ;
+                  Navigator.of(context).push(createRoute("goal",-1));
+                },
+                backgroundColor: Colors.white,
+                child: const Icon(Icons.task_alt_rounded,color: Color(0xFF2C3333),),
+              ),
+
+              SizedBox(height: 20,),
+              FloatingActionButton(
+                heroTag: "addMD",
+                tooltip: "Add markdowns",
+
+                onPressed: () async{
+                  await Future.delayed(const Duration(milliseconds: 100)) ;
+                  Navigator.of(context).push(createRoute("create",-1));
+                },
+                backgroundColor: Colors.white,
+                child: const Icon(color: Color(0xFF2C3333), Icons.add),
+              ),
+            ],
+          ):null,
+
+
+          body: SingleChildScrollView(
+            child: Column(
               children: [
-                Expanded(child: SizedBox()),
-                FloatingActionButton(
-                  tooltip: "TODOS",
-                  onPressed: () async{
-                    await Future.delayed(const Duration(milliseconds: 100)) ;
-
-                  },
-                  backgroundColor: Colors.white,
-                  child: const Icon(Icons.task_alt_rounded,color: Color(0xFF2C3333),),
+                const SizedBox(
+                  height: 60,
                 ),
 
-                SizedBox(height: 20,),
-                FloatingActionButton(
-                  tooltip: "Add markdowns",
 
-                  onPressed: () async{
-                    await Future.delayed(const Duration(milliseconds: 100)) ;
-                    Navigator.of(context).push(createRoute("create",-1));
-                  },
-                  backgroundColor: Colors.white,
-                  child: const Icon(color: Color(0xFF2C3333), Icons.add),
-                ),
-              ],
-            ):null,
-
-
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 60,
-                  ),
-
-
-                  SizedBox(
-                    height: 50,
-                    child: Row(
-                      children: [
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        (!MDProvid.longprs)? GestureDetector(
-                          onTap: (){
-                              Navigator.of(context).push(createRoute("profile",-1));
-
-                          },
-                          child: const Icon(
-                              // CupertinoIcons.settings,
-                              CupertinoIcons.profile_circled,
-                              color: Colors.white,
-                              size: 50,
-
-                          ),
-                        ):SizedBox(),
-
-                        SizedBox(width: 20,) ,
-                        (!MDProvid.longprs)?Expanded(child:InputIt(readonly: false,hint: "search",controller: _query,)):SizedBox(),
-
-                        const SizedBox(width: 20,)
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 55,
-                  ),
-                  Row(
-                    children:  [
-                      const SizedBox(
-                        width: 30,
-                      ),
-                       Expanded(
-                        child: Row(
-                          children: const [
-                            Text(
-                              "Hello ",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                  decoration: TextDecoration.none,
-                                  fontSize: 40,
-
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFFFF2929)),
-                            ),
-
-
-                          ],
-                        ),
-                      ),
-
+                SizedBox(
+                  height: 50,
+                  child: Row(
+                    children: [
                       const SizedBox(
                         width: 20,
                       ),
+                      (!MDProvid.longprs)? GestureDetector(
+                        onTap: (){
+                            Navigator.of(context).push(createRoute("profile",-1));
+
+                        },
+                        child: const Icon(
+                            // CupertinoIcons.settings,
+                            CupertinoIcons.profile_circled,
+                            color: Colors.white,
+                            size: 50,
+
+                        ),
+                      ):SizedBox(),
+
+                      SizedBox(width: 20,) ,
+                      (!MDProvid.longprs)?Expanded(child:InputIt(readonly: false,hint: "search",controller: _query,)):SizedBox(),
+
+                      const SizedBox(width: 20,)
                     ],
                   ),
-                  Row(
-                    children:  [
-                      const SizedBox(
-                        width: 30,
-                      ),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Text(
-                            nickname[0],
+                ),
+                const SizedBox(
+                  height: 55,
+                ),
+                Row(
+                  children:  [
+                    const SizedBox(
+                      width: 30,
+                    ),
+                     Expanded(
+                      child: Row(
+                        children: const [
+                          Text(
+                            "Hello ",
                             textAlign: TextAlign.left,
-                            style: const TextStyle(
+                            style: TextStyle(
                                 decoration: TextDecoration.none,
                                 fontSize: 40,
 
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFFF1FF4E)),
+                                color: Color(0xFFFF2929)),
                           ),
-                        ),
+
+
+                        ],
                       ),
-
-                      const SizedBox(
-                        width: 20,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Text("Today\n${"${DateTime.now()}".split(" ")[0]}",style: TextStyle(
-                        color:Colors.white,
-                        fontFamily: "montserrat"
-                      ),)
-                    ],
-                  ),
-
-                  SizedBox(
-                    height: 40,
-                  ),
-
-                  //Markdown list begins from here
-                  Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Colors.white,
-
                     ),
-                    child: (MDProvid.filteredMD(MDProvid.Query).length==0)?
-                    Center(child: Column(
-                      children:  [
-                        const SizedBox(
-                          height: 100,
+
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+                Row(
+                  children:  [
+                    const SizedBox(
+                      width: 30,
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Text(
+                          nickname[0],
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              decoration: TextDecoration.none,
+                              fontSize: 40,
+
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFF1FF4E)),
                         ),
-                        Text((MDProvid.MDlist.isEmpty)?"Add Markdown":"No MD Found"
-                          ,style: TextStyle(
-                              fontSize: 30,
-                              fontFamily: "helloFont"
-                          ),),
-                      ],
-                    ))
-                        :
-                    ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: MDProvid.filteredMD(MDProvid.Query).length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return GestureDetector(
-                            onTap: ()async{
-                              if(!MDProvid.longprs){
-                                await Future.delayed(const Duration(milliseconds: 100)) ;
-                                Navigator.of(context).push(createRoute("preview",index));
-                              }
-                              else{
-                                setState(() {
-                                  MDProvid.updateIndx(index) ;
-                                });
-                              }
-                            },
-                            onDoubleTap: (){
-                              MDProvid.indx = index ;
-                              Navigator.of(context).push(createRoute("edit",index));
+                      ),
+                    ),
 
-                            },
-                            onLongPress: (){
-                              setState(() {
-                                if(!MDProvid.longprs){
-                                  MDProvid.changelong() ;
-                                  MDProvid.indx = index ;
-                                }
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Text("Today\n${"${DateTime.now()}".split(" ")[0]}",style: TextStyle(
+                      color:Colors.white,
+                      fontFamily: "montserrat"
+                    ),),
+                    Expanded(child: SizedBox()),
 
-                              });
-                            },
-                            child: (MDProvid.longprs==true && MDProvid.indx==index)? PressedMDCard(inde:MDProvid.indx):
-                            MDHead(Head:"${MDProvid.filteredMD(MDProvid.Query)[index].heading}" , Date: "${MDProvid.filteredMD(MDProvid.Query)[index].date}",id:"${MDProvid.filteredMD(MDProvid.Query)[index].id}" ,colordecider: index,), // default
+
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration:  BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25) ,
+                      ),
+                      child: DropdownButton<String>(
+                        underline: const DropdownButtonHideUnderline(child: SizedBox(),),
+                        value: dropdownValue,
+                        items: <String>['Date(newest to oldest)','Date(oldest to newest)', 'A to Z', 'Z to A']
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(
+                              value,
+                              style: TextStyle(fontSize: 10),
+                            ),
                           );
-                        }
+                        }).toList(),
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            dropdownValue = newValue!;
+
+                            if(newValue=="Date(oldest to newest)"){
+                              MDProvid.sortdateOldToNew() ;
+                            }
+                            else if(newValue=="Date(newest to oldest)"){
+                              MDProvid.sortMD() ;
+                            }
+                            else if(newValue=="A to Z"){
+                              MDProvid.SortHeadAtoZ() ;
+                            }
+                            else if(newValue=="Z to A"){
+                              MDProvid.SortHeadZtoA() ;
+                            }
+                          });
+                        },
+                      ),
                     ),
+                    SizedBox(
+                      width: 20,
+                    )
+                  ],
+                ),
+
+                SizedBox(
+                  height: 30,
+                ),
+
+                //Markdown list begins from here
+                Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(40)),
+                    color: Colors.white,
+
+                  ),
+                  child: (MDProvid.filteredMD(MDProvid.Query).length==0)?
+                  Center(child: Column(
+                    children:  [
+                      const SizedBox(
+                        height: 100,
+                      ),
+                      Text((MDProvid.MDlist.isEmpty)?"Add Markdown":"No MD Found"
+                        ,style: TextStyle(
+                            fontSize: 30,
+                            fontFamily: "helloFont"
+                        ),),
+                    ],
+                  ))
+                      :
+                  Column(
+                    children: [
+                      ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: MDProvid.filteredMD(MDProvid.Query).length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return GestureDetector(
+                              onTap: ()async{
+                                if(!MDProvid.longprs){
+                                  await Future.delayed(const Duration(milliseconds: 100)) ;
+                                  Navigator.of(context).push(createRoute("preview",index));
+                                }
+                                else{
+                                  setState(() {
+                                    MDProvid.updateIndx(index) ;
+                                  });
+                                }
+                              },
+                              onDoubleTap: (){
+                                MDProvid.indx = index ;
+                                Navigator.of(context).push(createRoute("edit",index));
+
+                              },
+                              onLongPress: (){
+                                setState(() {
+                                  if(!MDProvid.longprs){
+                                    MDProvid.changelong() ;
+                                    MDProvid.indx = index ;
+                                  }
+
+                                });
+                              },
+                              child: (MDProvid.longprs==true && MDProvid.indx==index)? PressedMDCard(inde:MDProvid.indx):
+                              MDHead(Head:"${MDProvid.filteredMD(MDProvid.Query)[index].heading}" , Date: "${MDProvid.filteredMD(MDProvid.Query)[index].date}",id:"${MDProvid.filteredMD(MDProvid.Query)[index].id}" ,colordecider: index,), // default
+                            );
+                          }
+
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ],
                   ),
 
-
-                  const SizedBox(
-                    height: 10,
-                  ),
+                ),
 
 
 
 
-                  // Expanded(
-                  //
-                  //   child: Container(
-                  //     // padding: const EdgeInsets.only(bottom: 5),
-                  //     padding:  EdgeInsets.symmetric(vertical: 5),
-                  //     margin: const EdgeInsets.fromLTRB(20, 30, 20, 10),
-                  //     decoration: const BoxDecoration(
-                  //       boxShadow: [
-                  //         BoxShadow(
-                  //           color: Colors.black26,
-                  //           blurRadius: 4.0, // soften the shadow
-                  //           spreadRadius: 2.0, //extend the shadow
-                  //         )
-                  //       ],
-                  //       color: Color.fromRGBO(255,245,238, 1),
-                  //       borderRadius: BorderRadius.all(Radius.circular(20)),
-                  //     ),
-                  //     child: SingleChildScrollView(
-                  //       child: Column(
-                  //         children:  [
-                  //
-                  //
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
 
 
 
+                // Expanded(
+                //
+                //   child: Container(
+                //     // padding: const EdgeInsets.only(bottom: 5),
+                //     padding:  EdgeInsets.symmetric(vertical: 5),
+                //     margin: const EdgeInsets.fromLTRB(20, 30, 20, 10),
+                //     decoration: const BoxDecoration(
+                //       boxShadow: [
+                //         BoxShadow(
+                //           color: Colors.black26,
+                //           blurRadius: 4.0, // soften the shadow
+                //           spreadRadius: 2.0, //extend the shadow
+                //         )
+                //       ],
+                //       color: Color.fromRGBO(255,245,238, 1),
+                //       borderRadius: BorderRadius.all(Radius.circular(20)),
+                //     ),
+                //     child: SingleChildScrollView(
+                //       child: Column(
+                //         children:  [
+                //
+                //
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
 
-                  const SizedBox(
-                    height: 20,
-                  )
 
-                ],
-              ),
+                SizedBox(
+                  height: 20,
+                )
+
+              ],
             ),
           ),
         ),
+          ),
       ),
     );
   }
@@ -336,6 +389,7 @@ class HomeState extends State<HomePage> {
       (st=="edit")?CreateMD(md:MDProvid.filteredMD(MDProvid.Query)[e]):
       (st=="preview")?PreviewScreen(MDString: "${MDProvid.filteredMD(MDProvid.Query)[e].details}",head:"${MDProvid.filteredMD(MDProvid.Query)[e].heading}",dat: "${MDProvid.filteredMD(MDProvid.Query)[e].date}",):
       (st=="profile")?Profile() :
+      (st=="goal")?Goal() :
       CreateMD(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.0, 1.0);
@@ -352,5 +406,3 @@ class HomeState extends State<HomePage> {
   }
 
 }
-
-

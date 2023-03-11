@@ -172,10 +172,10 @@ class ProfileState extends State<Profile>{
 
                           onPressed: ()async{
                             SharedPreferences sp = await SharedPreferences.getInstance();
-                            sp.setInt('color', 0xFF37306B);
-                            colrPrder.changecolor(0xFF37306B) ;
+                            sp.setInt('color', 0xFF1C82AD);
+                            colrPrder.changecolor(0xFF1C82AD) ;
                           },
-                          backgroundColor: Color(0xFF37306B),
+                          backgroundColor: Color(0xFF1C82AD),
                         ),
                       ],
                     ),
@@ -206,11 +206,11 @@ class ProfileState extends State<Profile>{
                             onPressed: ()async{
                               SharedPreferences sp = await SharedPreferences.getInstance();
 
-                              sp.setInt('color', 0xFF1C82AD);
-                              colrPrder.changecolor(0xFF1C82AD) ;
-
+                              sp.setInt('color', 0xFF6C5B7B);
+                              colrPrder.changecolor(0xFF6C5B7B) ;
+                              //
                             },
-                          backgroundColor: Color(0xFF1C82AD),
+                          backgroundColor: Color(0xFF6C5B7B),
                         ),
                         SizedBox(width: 40,) ,
 

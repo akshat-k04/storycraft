@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storycraft/API/firebaseDeepLinking.dart';
+import 'package:storycraft/customWidget/LoadingWidget.dart';
 import 'package:storycraft/screens/auth/login.dart';
 
 import '../../Providers/Auth.dart';
@@ -63,7 +64,19 @@ class StateSplash extends State<SplashScreen>{
   Widget build(BuildContext context) {
     return Container(
       decoration:  BoxDecoration(
-        color:  Colors.white
+        color:  Colors.white,
+      ),
+      child: Column(
+        children:  [
+          const SizedBox(
+            height: 200,
+          ),
+          const Image(  image: AssetImage("assets/photo/logo.png"),),
+          SizedBox(
+            height: 150,
+          ),
+          LoadingWidget(Changewhite: true,) ,
+        ],
       ),
     ) ;
   }

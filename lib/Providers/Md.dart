@@ -35,7 +35,21 @@ class MDProvider with ChangeNotifier{
   void sortMD(){
     MDlist.sort((a,b)=> b.date!.compareTo((a.date! )));
   }
+  void sortdateOldToNew(){
+    sortMD() ;
+    MDlist =MDlist.reversed.toList() ;
+    notifyListeners() ;
+  }
+  void SortHeadZtoA(){
+    MDlist.sort((a,b)=> b.heading!.compareTo((a.heading! )));
+    notifyListeners() ;
+  }
+  void SortHeadAtoZ(){
+    SortHeadZtoA() ;
+    MDlist=MDlist.reversed.toList() ;
+    notifyListeners() ;
 
+  }
   void addMD(MDmodel MD)async{
     MDlist.add(MD);
     sortMD();
@@ -44,6 +58,7 @@ class MDProvider with ChangeNotifier{
 
 
   }
+
 
 
   void updateMD(MDmodel MD){

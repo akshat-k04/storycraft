@@ -24,7 +24,7 @@ class MDHeadState extends State<MDHead>{
 
     return Container(
       height: 100,
-      margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
       decoration:  BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         color: (widget.colordecider%5==0)?Color(0xFFEDF1D6):
