@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>241832078584-c1745u61gtd365siphclip6q754d3m7v.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.241832078584-c1745u61gtd365siphclip6q754d3m7v</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBSC_5K5qauL9c3lbJ_Pxc7A95Zfz_3xnQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>241832078584</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.storycraft</string>
+	<key>PROJECT_ID</key>
+	<string>storycraft-b1052</string>
+	<key>STORAGE_BUCKET</key>
+	<string>storycraft-b1052.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:241832078584:ios:01712c5fb3ac8c071b5f0d</string>
+</dict>
+</plist>

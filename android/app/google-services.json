@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "241832078584",
+    "project_id": "storycraft-b1052",
+    "storage_bucket": "storycraft-b1052.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241832078584:android:94da699dc04f9bba1b5f0d",
+        "android_client_info": {
+          "package_name": "com.example.storycraft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241832078584-3fp1rimesqh3luov33759pjjums3lam8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGwaJ6FPFbDL7GUZdUa9SMyxjghgCSpig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241832078584-3fp1rimesqh3luov33759pjjums3lam8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
