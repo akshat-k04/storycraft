@@ -214,7 +214,7 @@ class HomeState extends State<HomePage> {
                           child: AnimatedTextKit(
                             totalRepeatCount: 1,
                             animatedTexts: [
-                              TyperAnimatedText(' ',speed: const Duration(milliseconds: 1300)),
+                              TyperAnimatedText(' ',speed: const Duration(milliseconds: 1400)),
                               TyperAnimatedText(nickname[0],speed: const Duration(milliseconds: 200)),
 
                             ],

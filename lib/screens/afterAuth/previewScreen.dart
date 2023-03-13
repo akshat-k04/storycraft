@@ -46,6 +46,7 @@ class PreviewScreen extends StatelessWidget {
 
     return Scaffold(
         floatingActionButton: (prder.login==true && email!=null&& email!=prder.Email)?FloatingActionButton(
+          heroTag: "logintrue",
         onPressed: () {
           processIt(context) ;
         },
@@ -55,6 +56,8 @@ class PreviewScreen extends StatelessWidget {
           ),
       ) :
         (prder.login==false)?FloatingActionButton(
+          heroTag: "loginfalse",
+
           child: const Icon(
             Icons.login_rounded,
             color: Colors.black,

@@ -8,7 +8,6 @@ import 'package:storycraft/screens/auth/splashScreen.dart';
 import 'Providers/Auth.dart';
 import 'Providers/Md.dart';
 
-// ...
 
 
 void main() async{
@@ -61,8 +60,8 @@ class BaseStruct extends StatelessWidget{
   @override
   Widget build(BuildContext context){
 
-    return  AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
+    return  const AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           systemNavigationBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.light),

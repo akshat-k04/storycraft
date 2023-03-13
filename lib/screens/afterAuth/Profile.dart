@@ -141,6 +141,7 @@ class ProfileState extends State<Profile>{
                     Row(
                       children: [
                         FloatingActionButton(
+                          heroTag : "color1",
                             onPressed: ()async{
                               SharedPreferences sp = await SharedPreferences.getInstance();
                               sp.setInt('color', 0xFF2C3333);
@@ -155,6 +156,8 @@ class ProfileState extends State<Profile>{
 
 
                         FloatingActionButton(
+                          heroTag : "color2",
+
                           onPressed: ()async{
                             SharedPreferences sp = await SharedPreferences.getInstance();
                             sp.setInt('color', 0xFF1E1E1E);
@@ -169,7 +172,7 @@ class ProfileState extends State<Profile>{
 
 
                         FloatingActionButton(
-
+                          heroTag : "color3",
                           onPressed: ()async{
                             SharedPreferences sp = await SharedPreferences.getInstance();
                             sp.setInt('color', 0xFF1C82AD);
@@ -189,7 +192,9 @@ class ProfileState extends State<Profile>{
                     Row(
                       children: [
                         FloatingActionButton(
-                            onPressed: ()async{
+                          heroTag : "color4",
+
+                          onPressed: ()async{
                               SharedPreferences sp = await SharedPreferences.getInstance();
                               sp.setInt('color', 0xFF4E6E81);
                               colrPrder.changecolor(0xFF4E6E81) ;
@@ -203,7 +208,9 @@ class ProfileState extends State<Profile>{
 
 
                         FloatingActionButton(
-                            onPressed: ()async{
+                          heroTag : "color5",
+
+                          onPressed: ()async{
                               SharedPreferences sp = await SharedPreferences.getInstance();
 
                               sp.setInt('color', 0xFF6C5B7B);
@@ -218,7 +225,9 @@ class ProfileState extends State<Profile>{
 
 
                         FloatingActionButton(
-                            onPressed: ()async{
+                          heroTag : "color6",
+
+                          onPressed: ()async{
                               SharedPreferences sp = await SharedPreferences.getInstance();
                               sp.setInt('color', 0xFF3C6255);
                               colrPrder.changecolor(0xFF3C6255) ;
