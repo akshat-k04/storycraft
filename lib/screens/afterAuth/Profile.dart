@@ -46,7 +46,7 @@ class ProfileState extends State<Profile>{
         child: const Text(
           "logout",
           style: TextStyle(
-            fontFamily: "helloFont",
+            fontFamily: "lasitana",
             color: Colors.black
           ),
         )
@@ -220,7 +220,7 @@ class ProfileState extends State<Profile>{
                         FloatingActionButton(
                             onPressed: ()async{
                               SharedPreferences sp = await SharedPreferences.getInstance();
-                              sp.setString('color', "0xFF3C6255");
+                              sp.setInt('color', 0xFF3C6255);
                               colrPrder.changecolor(0xFF3C6255) ;
 
                             },
