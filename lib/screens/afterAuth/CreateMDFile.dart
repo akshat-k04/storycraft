@@ -1,4 +1,7 @@
+import 'dart:io';
+import 'dart:math';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:storycraft/model/MDModel.dart';
@@ -11,89 +14,77 @@ import '../../Providers/Md.dart';
 import '../../Providers/color.dart';
 import '../../customWidget/Toast.dart';
 
-class CreateMD extends StatefulWidget{
+class CreateMD extends StatefulWidget {
   var md;
-  CreateMD({super.key,this.md});
+  CreateMD({super.key, this.md});
 
   @override
   State<StatefulWidget> createState() {
-    return MDState() ;
+    return MDState();
   }
-
 }
 
 class MDState extends State<CreateMD> {
-
-
   TextEditingController bodycont = TextEditingController();
   TextEditingController titlecont = TextEditingController();
 
   @override
-    void initState() {
-
+  void initState() {
     // TODO: implement initState
     super.initState();
-    if(widget.md!=null){
+    if (widget.md != null) {
       titlecont.text = "${widget.md.heading}";
-      bodycont.text= "${widget.md.details}";
+      bodycont.text = "${widget.md.details}";
     }
   }
-  void processIt(BuildContext context){
-    if(titlecont.text.isEmpty){
-      showToast(context, "Please wirte the Title") ;
-    }
-    else if(bodycont.text.isEmpty){
-      showToast(context, "content must not be empty") ;
-    }
-    else{
-      AuthProvider prder = Provider.of<AuthProvider>(context,listen: false);
-      MDProvider MDProvid = Provider.of<MDProvider>(context,listen: false);
 
-      if(widget.md!=null){
-        MDmodel temper =MDmodel(
+  void processIt(BuildContext context) {
+    if (titlecont.text.isEmpty) {
+      showToast(context, "Please wirte the Title");
+    } else if (bodycont.text.isEmpty) {
+      showToast(context, "content must not be empty");
+    } else {
+      AuthProvider prder = Provider.of<AuthProvider>(context, listen: false);
+      MDProvider MDProvid = Provider.of<MDProvider>(context, listen: false);
+
+      if (widget.md != null) {
+        MDmodel temper = MDmodel(
           email: prder.Email,
           heading: titlecont.text,
           details: bodycont.text,
           date: "${DateTime.now()}",
-          localid:"${MDProvid.MDlist[MDProvid.indx].localid}" ,
+          localid: "${MDProvid.MDlist[MDProvid.indx].localid}",
         );
-        print("firnt") ;
-        MDProvid.updateMD(temper) ;
-      }
-      else{
-        MDmodel temper =MDmodel(
+        print("firnt");
+        MDProvid.updateMD(temper);
+      } else {
+        MDmodel temper = MDmodel(
           email: prder.Email,
           heading: titlecont.text,
           details: bodycont.text,
-          date:"${DateTime.now()}" ,
-          localid: "${prder.Email}${const Uuid().v1()}" ,
+          date: "${DateTime.now()}",
+          localid: "${prder.Email}${const Uuid().v1()}",
         );
 
         MDProvid.addMD(temper);
       }
 
-      Navigator.of(context).pop(
-          createRoute("home"));
+      Navigator.of(context).pop(createRoute("home"));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    ColorProvider colrPrder = Provider.of<ColorProvider>(context) ;
+    ColorProvider colrPrder =
+        Provider.of<ColorProvider>(context, listen: false);
 
     return Scaffold(
-
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height,
+          height: max(MediaQuery.of(context).size.height,MediaQuery.of(context).size.width),
           decoration: BoxDecoration(
             color: Color(colrPrder.color),
-
           ),
-
           child: Column(
             children: [
               const SizedBox(
@@ -105,13 +96,13 @@ class MDState extends State<CreateMD> {
                     width: 20,
                   ),
                   Text(
-                    (widget.md==null)?"Create":"Update",
+                    (widget.md == null) ? "Create" : "Update",
                     textAlign: TextAlign.left,
                     style: const TextStyle(
                         decoration: TextDecoration.none,
                         fontSize: 43,
                         fontFamily: "roboto",
-                        fontWeight:FontWeight.w500,
+                        fontWeight: FontWeight.w500,
                         color: Color(0xFFFF2929)),
                   ),
                   const Text(
@@ -121,18 +112,16 @@ class MDState extends State<CreateMD> {
                         decoration: TextDecoration.none,
                         fontSize: 43,
                         fontFamily: "roboto",
-                        fontWeight:FontWeight.w500,
+                        fontWeight: FontWeight.w500,
                         color: Color(0xFFF1FF4E)),
-
                   ),
                 ],
               ),
               Row(
-                children:  [
+                children: [
                   const SizedBox(
                     width: 20,
                   ),
-
                   Row(
                     children: const [
                       Text(
@@ -142,23 +131,20 @@ class MDState extends State<CreateMD> {
                             decoration: TextDecoration.none,
                             fontSize: 43,
                             fontFamily: "roboto",
-                            fontWeight:FontWeight.w500,
+                            fontWeight: FontWeight.w500,
                             color: Color(0xFFF1FF4E)),
                       ),
-
                     ],
                   ),
                 ],
               ),
-
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
-
               Container(
                 height: 80,
-                padding: const EdgeInsets.symmetric(
-                    vertical: 0.0, horizontal: 10.0),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
                 margin: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 10.0),
                 decoration: const BoxDecoration(
@@ -176,23 +162,18 @@ class MDState extends State<CreateMD> {
                   child: TextField(
                     controller: titlecont,
                     cursorColor: Colors.blueGrey,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: "poppins",
-
-                        fontSize: 20.0, fontWeight: FontWeight.bold),
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold),
                     decoration: const InputDecoration(
-
                         hintText: "Title", border: InputBorder.none),
                   ),
                 ),
-
               ),
-
-
               const SizedBox(
                 height: 20,
               ),
-
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(
@@ -202,7 +183,6 @@ class MDState extends State<CreateMD> {
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     color: Color(0xFFE9F8F9),
-
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black12,
@@ -216,60 +196,81 @@ class MDState extends State<CreateMD> {
                     cursorColor: Colors.blueGrey,
                     maxLines: null,
                     style: const TextStyle(
-                      fontSize: 17.0,
-                      fontFamily: "montserrat"
-                    ),
+                        fontSize: 17.0, fontFamily: "montserrat"),
                     decoration: const InputDecoration(
-                        hintText: "WRITE HERE",
-                        border: InputBorder.none),
+                        hintText: "WRITE HERE", border: InputBorder.none),
                   ),
-
                 ),
               ),
-
               const SizedBox(
                 height: 10,
               ),
-
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   FloatingActionButton(
+                    heroTag: "1",
+                    tooltip: "Save",
                     onPressed: () {
-                      processIt(context) ;
+                      processIt(context);
                     },
                     backgroundColor: Colors.white,
                     child: const Icon(
                       Icons.save,
                       color: Color(0xFF2C3333),
-
                     ),
                   ),
                   const SizedBox(
                     width: 20,
                   ),
                   FloatingActionButton(
+                    heroTag: "2",
+                    tooltip: "preview",
                     onPressed: () {
-                      if(bodycont.text.isEmpty){
-                        showToast(context, "content must not be empty") ;
+                      if (bodycont.text.isEmpty) {
+                        showToast(context, "content must not be empty");
+                      } else {
+                        Navigator.of(context).push(createRoute("preview"));
                       }
-                      else{
-                        Navigator.of(context).push(
-                            createRoute("preview"));
-                      }
-
                     },
                     backgroundColor: Colors.white,
                     child: const Icon(
                       Icons.preview_rounded,
                       color: Color(0xFF2C3333),
-
                     ),
                   ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  (widget.md == null)
+                      ? FloatingActionButton(
+                          heroTag: "3",
+                          tooltip: "Upload a file",
+                          onPressed: () async {
+                            FilePickerResult? result;
+                            result = await FilePicker.platform.pickFiles(
+                                type: FileType.custom,
+                                allowedExtensions: ['md']);
+                            //TODO:- upload function
+
+                            if (result != null) {
+                              File file = File("${result.files.single.path}");
+                              String head = result.files.single.name ;
+                              int len = head.length ;
+                              head = head.substring(0,len-3);
+                              titlecont.text =head ;
+                              String line = file.readAsStringSync() ;
+                              bodycont.text = line ;
+                            } else {
+                              // User canceled the picker
+                            }
+                          },
+                    backgroundColor: Colors.white,
+                          child: const Icon(Icons.upload,color: Colors.black,),
+                        )
+                      : const SizedBox(),
                 ],
               ),
-
               const SizedBox(
                 height: 20,
               )
@@ -282,14 +283,19 @@ class MDState extends State<CreateMD> {
 
   Route createRoute(String st) {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          st=="home"?HomePage():PreviewScreen(MDString: bodycont.text,head:titlecont.text,dat: "not_saved_yet",),
+      pageBuilder: (context, animation, secondaryAnimation) => st == "home"
+          ? const HomePage()
+          : PreviewScreen(
+              MDString: bodycont.text,
+              head: titlecont.text,
+              dat: "not_saved_yet",
+            ),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.0, 1.0);
         const end = Offset.zero;
         const curve = Curves.ease;
-        var tween = Tween(begin: begin, end: end).chain(
-            CurveTween(curve: curve));
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
         return SlideTransition(
           position: animation.drive(tween),

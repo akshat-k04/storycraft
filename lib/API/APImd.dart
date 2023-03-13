@@ -2,10 +2,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
 import 'package:storycraft/model/MDModel.dart';
 
-import '../Providers/Md.dart';
 
 
 class MDAPI {

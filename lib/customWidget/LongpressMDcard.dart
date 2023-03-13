@@ -1,7 +1,7 @@
-import 'dart:io';
+import 'dart:convert';
 import 'dart:typed_data';
+import 'package:document_file_save_plus/document_file_save_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:storycraft/API/firebaseDeepLinking.dart';
@@ -9,10 +9,10 @@ import 'package:storycraft/screens/afterAuth/CreateMDFile.dart';
 import 'package:storycraft/screens/afterAuth/previewScreen.dart';
 
 import '../Providers/Md.dart';
+import 'Toast.dart';
 
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-
+// import 'package:pdf/pdf.dart';
+// import 'package:pdf/widgets.dart' as pw;
 
 class PressedMDCard extends StatelessWidget {
   int inde;
@@ -41,7 +41,7 @@ class PressedMDCard extends StatelessWidget {
         children: [
           IconButton(
               onPressed: () {
-                Navigator.of(context).push(createRoute("edit",context));
+                Navigator.of(context).push(createRoute("edit", context));
               },
               icon: const Icon(
                 Icons.edit,
@@ -57,82 +57,51 @@ class PressedMDCard extends StatelessWidget {
               )),
           IconButton(
               onPressed: () {
-                Navigator.of(context).push(createRoute("preview",context));
+                Navigator.of(context).push(createRoute("preview", context));
                 // MDProvid.changelong() ;
               },
               icon: const Icon(
                 Icons.preview_rounded,
               )),
           IconButton(
-              onPressed: () async{
-                String generatedLink =await FirebaseDynamicLink.createLink(MDProvid.filteredMD(MDProvid.Query)[inde]) ;
-                await Future.delayed(Duration(milliseconds: 300));
-                Share.share(generatedLink) ;
+              onPressed: () async {
+                String generatedLink = await FirebaseDynamicLink.createLink(
+                    MDProvid.filteredMD(MDProvid.Query)[inde]);
+                await Future.delayed(const Duration(milliseconds: 300));
+                Share.share(generatedLink);
               },
               icon: const Icon(
                 Icons.share,
               )),
           IconButton(
-              onPressed: () async {
-                // Markdown(data: "${MDProvid.filteredMD(MDProvid.Query)[inde].details}",)  ;
-                final pdf = pw.Document();
+            onPressed: () async {
+              List<int> textbyte = utf8.encode(
+                  "${MDProvid.filteredMD(MDProvid.Query)[inde].details}");
 
-                pdf.addPage(pw.MultiPage(
-                  pageFormat: PdfPageFormat.a4,
-                  margin: pw.EdgeInsets.all(32),
-                  build: (pw.Context context) {
-                    return <pw.Widget>[
-                      pw.Header(
-                          level: 0,
-                          child: pw.Row(
-                              mainAxisAlignment:
-                                  pw.MainAxisAlignment.spaceBetween,
-                              children: <pw.Widget>[
-                                pw.Text("${MDProvid.filteredMD(MDProvid.Query)[inde].heading}", textScaleFactor: 2),
-                              ])),
-
-
-                      // Write All the paragraph in one line.
-                      // For clear understanding
-                      // here there are line breaks.
-
-                      pw.Paragraph(text:"${MDProvid.filteredMD(MDProvid.Query)[inde].details}", ),
-                    ];
-                  },
-                ));
-                // On Flutter, use the [path_provider](https://pub.dev/packages/path_provider) library:
-                Uint8List tem = await pdf.save();
-                saveLocally(tem);
-              },
-              icon: const Icon(
-                Icons.picture_as_pdf_rounded,
-              )),
+              Uint8List textbyte1 = Uint8List.fromList(textbyte);
+              DocumentFileSavePlus().saveFile(
+                  textbyte1,
+                  "${MDProvid.filteredMD(MDProvid.Query)[inde].heading}",
+                  "text/markdown");
+              showToast(context ,"saved Successfully.See your download folder") ;
+            },
+            icon: const Icon(Icons.file_download_rounded),
+          ),
         ],
       ),
     );
   }
 
-  void saveLocally(Uint8List pngBytes) async {
-    final String dir = (await getApplicationDocumentsDirectory()).path;
-    final String fullPath = '$dir/${DateTime.now().millisecond}.pdf';
-    File capturedpdfFile = File(fullPath);
-    var fg = await capturedpdfFile.writeAsBytes(pngBytes);
-    print(fg);
-
-    await Future.delayed(Duration(milliseconds: 300));
-    await Share.shareXFiles([XFile(fullPath)]);
-  }
-
-  Route createRoute(String st,BuildContext context) {
-    MDProvider MDProvid = Provider.of<MDProvider>(context,listen: false) ;
+  Route createRoute(String st, BuildContext context) {
+    MDProvider MDProvid = Provider.of<MDProvider>(context, listen: false);
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => (st == "edit")
           ? CreateMD(
-              md: Provider.of<MDProvider>(context).filteredMD(MDProvid.Query)[inde],
+              md: Provider.of<MDProvider>(context)
+                  .filteredMD(MDProvid.Query)[inde],
             )
           : PreviewScreen(
-              MDString:
-                  "${MDProvid.filteredMD(MDProvid.Query)[inde].details}",
+              MDString: "${MDProvid.filteredMD(MDProvid.Query)[inde].details}",
               head: "${MDProvid.filteredMD(MDProvid.Query)[inde].heading}",
               dat: "${MDProvid.filteredMD(MDProvid.Query)[inde].date}",
             ),
@@ -151,3 +120,47 @@ class PressedMDCard extends StatelessWidget {
     );
   }
 }
+
+//
+// final pdf = pw.Document();
+//
+// pdf.addPage(pw.MultiPage(
+// pageFormat: PdfPageFormat.a4,
+// margin: pw.EdgeInsets.all(32),
+// build: (pw.Context context) {
+// return <pw.Widget>[
+// pw.Header(
+// level: 0,
+// child: pw.Row(
+// mainAxisAlignment:
+// pw.MainAxisAlignment.spaceBetween,
+// children: <pw.Widget>[
+// pw.Text("${MDProvid.filteredMD(MDProvid.Query)[inde].heading}", textScaleFactor: 2),
+// ],
+// ),
+// ),
+//
+// pw.Paragraph(text:"${MDProvid.filteredMD(MDProvid.Query)[inde].details}", ),
+// ];
+// },
+// ));
+//
+//
+//
+// Uint8List tem = await pdf.save();
+// String heading = "${MDProvid.filteredMD(MDProvid.Query)[inde].heading}" ;
+// saveLocallyAndShare(tem,heading);
+
+// function for pdf
+
+// void saveLocallyAndShare(Uint8List pngBytes,String head) async {
+//   final String dir = (await getApplicationDocumentsDirectory()).path;
+//
+//   final String fullPath = '$dir/${head}.md';
+//   File capturedpdfFile = File(fullPath);
+//   var fg = await capturedpdfFile.writeAsBytes(pngBytes);
+//   print(fg);
+//
+//   await Future.delayed(Duration(milliseconds: 300));
+//   await Share.shareXFiles([XFile(fullPath)]);
+// }

@@ -8,7 +8,7 @@ class LoadingWidget extends StatelessWidget{
   Widget build(BuildContext context) {
     return SizedBox(
       height: 36,
-      child:CircularProgressIndicator(backgroundColor: Colors.transparent,color: (Changewhite==true)?Color(0xFF434242):Colors.white,strokeWidth: 4,),
+      child:CircularProgressIndicator(backgroundColor: Colors.transparent,color: (Changewhite==true)?const Color(0xFF434242):Colors.white,strokeWidth: 4,),
     );
   }
 

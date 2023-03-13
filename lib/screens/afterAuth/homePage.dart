@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,7 @@ class HomeState extends State<HomePage> {
   final TextEditingController _query = TextEditingController();
 
 
+  @override
   void initState(){
     // TODO: implement initState
     super.initState();
@@ -80,7 +82,7 @@ class HomeState extends State<HomePage> {
 
           floatingActionButton: (!MDProvid.longprs)?Column(
             children: [
-              Expanded(child: SizedBox()),
+              const Expanded(child: SizedBox()),
               FloatingActionButton(
                 heroTag: "TODO",
                 tooltip: "TODOS",
@@ -92,7 +94,7 @@ class HomeState extends State<HomePage> {
                 child: const Icon(Icons.task_alt_rounded,color: Color(0xFF2C3333),),
               ),
 
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               FloatingActionButton(
                 heroTag: "addMD",
                 tooltip: "Add markdowns",
@@ -135,10 +137,10 @@ class HomeState extends State<HomePage> {
                             size: 50,
 
                         ),
-                      ):SizedBox(),
+                      ):const SizedBox(),
 
-                      SizedBox(width: 20,) ,
-                      (!MDProvid.longprs)?Expanded(child:InputIt(readonly: false,hint: "search",controller: _query,)):SizedBox(),
+                      const SizedBox(width: 20,) ,
+                      (!MDProvid.longprs)?Expanded(child:InputIt(readonly: false,hint: "search",controller: _query,)):const SizedBox(),
 
                       const SizedBox(width: 20,)
                     ],
@@ -154,17 +156,35 @@ class HomeState extends State<HomePage> {
                     ),
                      Expanded(
                       child: Row(
-                        children: const [
-                          Text(
-                            "Hello ",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                decoration: TextDecoration.none,
-                                fontSize: 40,
+                        children:  [
+                          DefaultTextStyle(
+                              style: const TextStyle(
+                                  decoration: TextDecoration.none,
+                                  fontSize: 40,
 
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFFFF2929)),
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFFFF2929)),
+                              child: AnimatedTextKit(
+                                totalRepeatCount: 1,
+                                // repeatForever: true,
+                              animatedTexts: [
+                                TyperAnimatedText(' ',speed: const Duration(milliseconds: 200)),
+                                TyperAnimatedText('Hello',speed: const Duration(milliseconds: 200)),
+
+                        ],
+
+                      ),
                           ),
+                          // Text(
+                          //   "Hello ",
+                          //   textAlign: TextAlign.left,
+                          //   style: TextStyle(
+                          //       decoration: TextDecoration.none,
+                          //       fontSize: 40,
+                          //
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Color(0xFFFF2929)),
+                          // ),
 
 
                         ],
@@ -184,15 +204,34 @@ class HomeState extends State<HomePage> {
                     Expanded(
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        child: Text(
-                          nickname[0],
-                          textAlign: TextAlign.left,
+                        child: DefaultTextStyle(
                           style: const TextStyle(
                               decoration: TextDecoration.none,
                               fontSize: 40,
 
                               fontWeight: FontWeight.bold,
                               color: Color(0xFFF1FF4E)),
+                          child: AnimatedTextKit(
+                            totalRepeatCount: 1,
+                            animatedTexts: [
+                              TyperAnimatedText(' ',speed: const Duration(milliseconds: 1300)),
+                              TyperAnimatedText(nickname[0],speed: const Duration(milliseconds: 200)),
+
+                            ],
+
+                          ),
+
+
+                          // Text(
+                          //   nickname[0],
+                          //   textAlign: TextAlign.left,
+                          //   style: const TextStyle(
+                          //       decoration: TextDecoration.none,
+                          //       fontSize: 40,
+                          //
+                          //       fontWeight: FontWeight.bold,
+                          //       color: Color(0xFFF1FF4E)),
+                          // ),
                         ),
                       ),
                     ),
@@ -202,23 +241,25 @@ class HomeState extends State<HomePage> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
+
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 30,
                     ),
-                    Text("Today\n${"${DateTime.now()}".split(" ")[0]}",style: TextStyle(
+                    Text("Today\n${"${DateTime.now()}".split(" ")[0]}",style: const TextStyle(
                       color:Colors.white,
                       fontFamily: "montserrat"
                     ),),
-                    Expanded(child: SizedBox()),
+
+                    const Expanded(child: SizedBox()),
 
 
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                    (!MDProvid.longprs)?Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       decoration:  BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(25) ,
@@ -232,7 +273,7 @@ class HomeState extends State<HomePage> {
                             value: value,
                             child: Text(
                               value,
-                              style: TextStyle(fontSize: 10),
+                              style: const TextStyle(fontSize: 10),
                             ),
                           );
                         }).toList(),
@@ -255,14 +296,14 @@ class HomeState extends State<HomePage> {
                           });
                         },
                       ),
-                    ),
-                    SizedBox(
+                    ):const SizedBox(),
+                    const SizedBox(
                       width: 20,
                     )
                   ],
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
 
@@ -273,14 +314,14 @@ class HomeState extends State<HomePage> {
                     color: Colors.white,
 
                   ),
-                  child: (MDProvid.filteredMD(MDProvid.Query).length==0)?
+                  child: (MDProvid.filteredMD(MDProvid.Query).isEmpty)?
                   Center(child: Column(
                     children:  [
                       const SizedBox(
                         height: 100,
                       ),
                       Text((MDProvid.MDlist.isEmpty)?"Add Markdown":"No MD Found"
-                        ,style: TextStyle(
+                        ,style: const TextStyle(
                             fontSize: 30,
                             fontFamily: "helloFont"
                         ),),
@@ -290,7 +331,7 @@ class HomeState extends State<HomePage> {
                   Column(
                     children: [
                       ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                           itemCount: MDProvid.filteredMD(MDProvid.Query).length,
                           itemBuilder: (BuildContext context, int index) {
@@ -326,7 +367,7 @@ class HomeState extends State<HomePage> {
                           }
 
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                     ],
@@ -369,7 +410,7 @@ class HomeState extends State<HomePage> {
                 // ),
 
 
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 )
 
@@ -388,8 +429,8 @@ class HomeState extends State<HomePage> {
       (st=="create")?CreateMD():
       (st=="edit")?CreateMD(md:MDProvid.filteredMD(MDProvid.Query)[e]):
       (st=="preview")?PreviewScreen(MDString: "${MDProvid.filteredMD(MDProvid.Query)[e].details}",head:"${MDProvid.filteredMD(MDProvid.Query)[e].heading}",dat: "${MDProvid.filteredMD(MDProvid.Query)[e].date}",):
-      (st=="profile")?Profile() :
-      (st=="goal")?Goal() :
+      (st=="profile")?const Profile() :
+      (st=="goal")?const Goal() :
       CreateMD(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.0, 1.0);

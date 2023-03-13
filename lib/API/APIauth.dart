@@ -34,7 +34,9 @@ class APIService {
 
 
     Uri requestUri = Uri.parse("$baseurl/auth/login") ;
+    print("getting data") ;
     var response = await http.post(requestUri,body: AuthModel(email: email,password: pass).createMapForLogin());
+    print("recived data") ;
 
     var decoded = jsonDecode(response.body);
     return decoded["bol"] ;

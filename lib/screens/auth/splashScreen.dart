@@ -1,9 +1,8 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:storycraft/API/firebaseDeepLinking.dart';
-import 'package:storycraft/customWidget/LoadingWidget.dart';
 import 'package:storycraft/screens/auth/login.dart';
 
 import '../../Providers/Auth.dart';
@@ -13,6 +12,8 @@ import '../../firebase_options.dart';
 import '../afterAuth/homePage.dart';
 
 class SplashScreen extends StatefulWidget{
+  const SplashScreen({super.key});
+
   @override
   State<StatefulWidget> createState() {
    return StateSplash() ;
@@ -20,6 +21,7 @@ class SplashScreen extends StatefulWidget{
 }
 
 class StateSplash extends State<SplashScreen>{
+  bool fetch = false  ;
   @override
   void initState() {
     // TODO: implement initState
@@ -41,17 +43,21 @@ class StateSplash extends State<SplashScreen>{
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-
+    await Future.delayed(const Duration(seconds: 2)) ;
 
     print ("done for firebase") ;
     if(email!=null){
 
       print ("intil") ;
-
+      setState(() {
+        fetch = true ;
+      });
       await prder.getAuthData(email);
       await MDProvid.fetchMD(email) ;
       print ("done for ") ;
-
+      setState(() {
+        fetch =false ;
+      });
       //TODO:- get data of user
       Navigator.of(context).pushAndRemoveUntil(createRoute('home'),(Route<dynamic> route) => false);
     }
@@ -62,21 +68,46 @@ class StateSplash extends State<SplashScreen>{
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration:  BoxDecoration(
-        color:  Colors.white,
-      ),
-      child: Column(
-        children:  [
-          const SizedBox(
-            height: 200,
-          ),
-          const Image(  image: AssetImage("assets/photo/logo.png"),),
-          SizedBox(
-            height: 150,
-          ),
-          LoadingWidget(Changewhite: true,) ,
-        ],
+    return SingleChildScrollView(
+      child: Container(
+        decoration:  const BoxDecoration(
+          color:  Colors.white,
+        ),
+        child: Column(
+          children:  [
+            const SizedBox(
+              height: 150,
+            ),
+            const SizedBox(
+                width:370,
+                child: Image(  image: AssetImage("assets/photo/logo.png"),)),
+            const SizedBox(
+              height: 150,
+            ),
+            // LoadingWidget(Changewhite: true,) ,
+
+
+            (fetch)?DefaultTextStyle(
+
+              style: const TextStyle(
+                  decoration: TextDecoration.none ,
+                  fontSize: 12,
+                  color: Colors.black
+              ),
+              child: AnimatedTextKit(
+                repeatForever: true,
+                pause: Duration(seconds: 2),
+                animatedTexts: [
+                  TypewriterAnimatedText('Fetching data!'),
+                  TypewriterAnimatedText('Fetching data!'),
+
+                ],
+
+              ),
+            ):const SizedBox(),
+            const SizedBox(height: 300,),
+          ],
+        ),
       ),
     ) ;
   }

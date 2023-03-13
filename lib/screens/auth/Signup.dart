@@ -96,7 +96,7 @@ class SignUpState extends State<SignUp>{
                     margin: const EdgeInsets.only(top: 50),
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         // Row(
@@ -216,7 +216,7 @@ Route createRoute(String st) {
 
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
-    (st=="otppg")?OTPScreen():
+    (st=="otppg")?const OTPScreen():
     const SignUp(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);

@@ -127,7 +127,7 @@ class ProfileState extends State<Profile>{
                 height: 20,
               ),
               Container(
-                padding: EdgeInsets.all(40),
+                padding: const EdgeInsets.all(40),
                 width: 330,
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -147,9 +147,9 @@ class ProfileState extends State<Profile>{
                               colrPrder.changecolor(0xFF2C3333) ;
 
                             },
-                          backgroundColor: Color(0xFF2C3333),
+                          backgroundColor: const Color(0xFF2C3333),
                         ),
-                        SizedBox(width: 40,) ,
+                        const SizedBox(width: 40,) ,
 
 
 
@@ -161,9 +161,9 @@ class ProfileState extends State<Profile>{
                             colrPrder.changecolor(0xFF1E1E1E) ;
 
                           },
-                          backgroundColor: Color(0xFF1E1E1E),
+                          backgroundColor: const Color(0xFF1E1E1E),
                         ),
-                        SizedBox(width: 40,) ,
+                        const SizedBox(width: 40,) ,
 
 
 
@@ -175,11 +175,11 @@ class ProfileState extends State<Profile>{
                             sp.setInt('color', 0xFF1C82AD);
                             colrPrder.changecolor(0xFF1C82AD) ;
                           },
-                          backgroundColor: Color(0xFF1C82AD),
+                          backgroundColor: const Color(0xFF1C82AD),
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
 
@@ -195,9 +195,9 @@ class ProfileState extends State<Profile>{
                               colrPrder.changecolor(0xFF4E6E81) ;
 
                             },
-                          backgroundColor: Color(0xFF4E6E81),
+                          backgroundColor: const Color(0xFF4E6E81),
                         ),
-                        SizedBox(width: 40,) ,
+                        const SizedBox(width: 40,) ,
 
 
 
@@ -210,9 +210,9 @@ class ProfileState extends State<Profile>{
                               colrPrder.changecolor(0xFF6C5B7B) ;
                               //
                             },
-                          backgroundColor: Color(0xFF6C5B7B),
+                          backgroundColor: const Color(0xFF6C5B7B),
                         ),
-                        SizedBox(width: 40,) ,
+                        const SizedBox(width: 40,) ,
 
 
 
@@ -220,11 +220,11 @@ class ProfileState extends State<Profile>{
                         FloatingActionButton(
                             onPressed: ()async{
                               SharedPreferences sp = await SharedPreferences.getInstance();
-                              sp.setString('color', "0xFF13C6255");
-                              colrPrder.changecolor(0xFF13C6255) ;
+                              sp.setString('color', "0xFF3C6255");
+                              colrPrder.changecolor(0xFF3C6255) ;
 
                             },
-                          backgroundColor: Color(0xFF13C6255),
+                          backgroundColor: const Color(0xFF3C6255),
                         ),
                       ],
                     ),

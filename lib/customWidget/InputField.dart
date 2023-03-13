@@ -30,10 +30,10 @@ class StateInput extends State<InputIt> {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      padding: (widget.hint=="search")?EdgeInsets.symmetric(horizontal: 5):null,
+      padding: (widget.hint=="search")?const EdgeInsets.symmetric(horizontal: 5):null,
       decoration:  BoxDecoration(
-        borderRadius:  BorderRadius.all((widget.hint=="search")? Radius.circular(rad):Radius.circular(8)),
-        color: (widget.hint=="Your Password")?Color(0xFF9C9A9A):Colors.white
+        borderRadius:  BorderRadius.all((widget.hint=="search")? Radius.circular(rad):const Radius.circular(8)),
+        color: (widget.hint=="Your Password")?const Color(0xFF9C9A9A):Colors.white
       ),
 
 
@@ -51,6 +51,7 @@ class StateInput extends State<InputIt> {
           if (value == null || value.isEmpty) {
             return 'Please enter ${widget.hint}';
           }
+          return null;
         },
 
 
@@ -59,7 +60,7 @@ class StateInput extends State<InputIt> {
             fontFamily: 'ubantu'
         ),
 
-          cursorColor:Color(0xFF1E1E1E),
+          cursorColor:const Color(0xFF1E1E1E),
 
         decoration: InputDecoration(
           suffixIcon: (widget.hint=="Your Password")?IconButton(
@@ -107,22 +108,22 @@ class StateInput extends State<InputIt> {
 
 
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
               color: Colors.white
             ),
               borderRadius: BorderRadius.all(
-                (widget.hint=="search")? Radius.circular(rad):Radius.circular(8),
+                (widget.hint=="search")? Radius.circular(rad):const Radius.circular(8),
               )
           ),
 
 
 
           errorBorder: OutlineInputBorder(
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                   color: Colors.red
               ),
               borderRadius: BorderRadius.all(
-                (widget.hint=="search")? Radius.circular(rad):Radius.circular(8),
+                (widget.hint=="search")? Radius.circular(rad):const Radius.circular(8),
               )
           ),
 
@@ -130,11 +131,11 @@ class StateInput extends State<InputIt> {
 
 
           focusedErrorBorder:OutlineInputBorder(
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                   color: Colors.red
               ),
               borderRadius: BorderRadius.all(
-                (widget.hint=="search")? Radius.circular(rad):Radius.circular(8),
+                (widget.hint=="search")? Radius.circular(rad):const Radius.circular(8),
               )
           ),
 

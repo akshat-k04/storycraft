@@ -11,7 +11,7 @@ import '../customWidget/Toast.dart';
 
 class FirebaseDynamicLink {
   static Future<String> createLink (MDmodel MDmodel)async{
-    String _linkmessage ;
+    String linkmessage ;
     final String DynamicLink = "https://www.storycraft.com/markdown?localid=${MDmodel.localid}";
     FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
@@ -29,8 +29,8 @@ class FirebaseDynamicLink {
     //TODO:- create short link
     Uri url=await dynamicLinks.buildLink(parameters);
 
-    _linkmessage= url.toString() ;
-    return _linkmessage ;
+    linkmessage= url.toString() ;
+    return linkmessage ;
   }
 
   static Future<void> initdynamiclink (BuildContext context)async{
@@ -48,13 +48,13 @@ class FirebaseDynamicLink {
         localid: localid
       ) ;
 
-      await MDProvid.FindMD(temp) ;
+      await Provider.of<MDProvider>(context).FindMD(temp) ;
       Share.share("DD") ;
 
       showToast(context, "correct") ;
 
-      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>PreviewScreen(MDString: MDProvid.DynamicLinkMD.details, head: MDProvid.DynamicLinkMD.heading
-          , dat: "not_saved_yet")));
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context)=>PreviewScreen(MDString: MDProvid.DynamicLinkMD.details, head: MDProvid.DynamicLinkMD.heading
+          , dat: "not_saved_yet")),(Route<dynamic> route) => false);
 
     }
 

@@ -27,11 +27,11 @@ class MDHeadState extends State<MDHead>{
       margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
       decoration:  BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
-        color: (widget.colordecider%5==0)?Color(0xFFEDF1D6):
-        (widget.colordecider%5==1)?Color(0xFFDFFFD8):
-        (widget.colordecider%5==2)?Color(0xFFBAD7E9):
-        (widget.colordecider%5==3)?Color(0xFFF5EAEA):
-            Color(0xFFE3DFFD)
+        color: (widget.colordecider%5==0)?const Color(0xFFEDF1D6):
+        (widget.colordecider%5==1)?const Color(0xFFDFFFD8):
+        (widget.colordecider%5==2)?const Color(0xFFBAD7E9):
+        (widget.colordecider%5==3)?const Color(0xFFF5EAEA):
+            const Color(0xFFE3DFFD)
         ,
         boxShadow: const [
           BoxShadow(
@@ -52,18 +52,18 @@ class MDHeadState extends State<MDHead>{
                 width: 20,
               ),
               Text(widget.Date.split(" ")[1].split(".")[0]),
-              SizedBox(width: 15,),
+              const SizedBox(width: 15,),
               Expanded(child: Text(widget.Date.split(" ")[0])),
               const SizedBox(
                 width: 20,
               ),
-              (widget.id=="null")?Icon(CupertinoIcons.clock):Icon(Icons.done_all),
+              (widget.id=="null")?const Icon(CupertinoIcons.clock):const Icon(Icons.done_all),
               const SizedBox(
                 width: 20,
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(

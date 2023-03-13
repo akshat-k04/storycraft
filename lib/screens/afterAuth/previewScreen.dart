@@ -19,13 +19,7 @@ class PreviewScreen extends StatelessWidget {
   PreviewScreen({super.key, required this.MDString,required this.head,required this.dat,this.email});
 
   void processIt(BuildContext context){
-    if(head.isEmpty){
-      showToast(context, "Please wirte the Title") ;
-    }
-    else if(MDString.isEmpty){
-      showToast(context, "content must not be empty") ;
-    }
-    else{
+
       AuthProvider prder = Provider.of<AuthProvider>(context,listen: false);
       MDProvider MDProvid = Provider.of<MDProvider>(context,listen: false);
 
@@ -43,7 +37,6 @@ class PreviewScreen extends StatelessWidget {
       Navigator.of(context).pop(
           createRoute("home"));
 
-    }
   }
 
   @override
@@ -57,12 +50,12 @@ class PreviewScreen extends StatelessWidget {
           processIt(context) ;
         },
 
-          child: Icon(
+          child: const Icon(
             Icons.save_alt,color: Colors.black54,
           ),
       ) :
         (prder.login==false)?FloatingActionButton(
-          child: Icon(
+          child: const Icon(
             Icons.login_rounded,
             color: Colors.black,
           ),
@@ -144,14 +137,14 @@ class PreviewScreen extends StatelessWidget {
             ),
             child: Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Expanded(
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Text("${head}",
-                      style:TextStyle(
+                      style:const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold
                       ),
@@ -161,7 +154,7 @@ class PreviewScreen extends StatelessWidget {
               ],
             ),
           ),
-            SizedBox(
+              const SizedBox(
               height: 20,
             ),
             Expanded(
@@ -186,16 +179,16 @@ class PreviewScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Expanded(child: Text("Date:${dat}".split(" ")[0])),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           )
                         ],
                       ),
-                      Expanded(child: Markdown(data: MDString,)),
+                      Expanded(child: Markdown(data: MDString,selectable: true,)),
                     ],
                   )
                 ),
@@ -210,7 +203,7 @@ class PreviewScreen extends StatelessWidget {
   Route createRoute(String st) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
-      st=="home"?HomePage():
+      st=="home"?const HomePage():
           st=="login"?login():
       PreviewScreen(MDString: "",head:"",dat: "not_saved_yet",),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {

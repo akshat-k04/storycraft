@@ -13,6 +13,8 @@ import '../afterAuth/homePage.dart';
 import 'Signup.dart';
 
 class ForgetPassword extends StatefulWidget{
+  const ForgetPassword({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return ForgetState() ;
@@ -112,7 +114,7 @@ class ForgetState extends State<ForgetPassword>{
                       const SizedBox(
                         height: 5,
                       ),
-                      (OTPvalidate)?InputIt(hint: "Your Password", controller: _confirm,readonly: (loading)?true:false):SizedBox() ,
+                      (OTPvalidate)?InputIt(hint: "Your Password", controller: _confirm,readonly: (loading)?true:false):const SizedBox() ,
                       const SizedBox(
                         height: 30,
                       ),
