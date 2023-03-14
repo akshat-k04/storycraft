@@ -5,9 +5,9 @@ import 'package:storycraft/model/OTPmodel.dart';
 
 import '../model/AuthenticationModels.dart';
 
-
 class APIService {
   static String baseurl ="https://storycraftbackend.onrender.com" ;
+
 
 
   static Future<AuthModel> getdata(String email )  async {
