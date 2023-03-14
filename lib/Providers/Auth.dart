@@ -15,7 +15,7 @@ class AuthProvider with ChangeNotifier{
     AuthModel info = await APIService.getdata(email)  ;
     Email = info.email! ;
     Name = info.name! ;
-    Password = info.password! ;
+    // Password = info.password! ;
     login = true ;
     notifyListeners() ;
   }
