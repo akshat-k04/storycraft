@@ -1,16 +1,14 @@
 # storycraft
 
-A new Flutter project.
+IMG Winter Assignment
+
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+to run this application in your mobile or make some changes in this app just clone it to your local computer then 
+run command 
+$ flutter pub get  
+to install all the package 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Now you are ready to edit
