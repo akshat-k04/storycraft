@@ -21,7 +21,7 @@ class APIService {
 
     AuthModel userInfo= AuthModel(
       name:decoded["name"] ,
-      password:decoded["password"] ,
+      // password:decoded["password"] ,
       email:decoded["email"] ,
 
     );
