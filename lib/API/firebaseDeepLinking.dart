@@ -1,7 +1,6 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:storycraft/model/MDModel.dart';
 import 'package:storycraft/screens/afterAuth/previewScreen.dart';
 
@@ -17,24 +16,31 @@ class FirebaseDynamicLink {
 
 
     final DynamicLinkParameters parameters = DynamicLinkParameters(
-      uriPrefix: 'https://story4craft.page.link/md',
+      uriPrefix: 'https://clustersstorycraft.page.link',
       link: Uri.parse(DynamicLink),
+
       androidParameters: const AndroidParameters(
+
         packageName: 'com.example.storycraft',
         minimumVersion: 19,
       ),
     );
 
+    Uri url ;
+    //create short link
+    // ShortDynamicLink shortLink = await  dynamicLinks.buildShortLink(parameters);
+    // url = shortLink.shortUrl ;
 
-    //TODO:- create short link
-    Uri url=await dynamicLinks.buildLink(parameters);
+    //create long link
 
+    url=await dynamicLinks.buildLink(parameters);
+    // shareURL(Uri.https(url.authority, url.path, {"username": "Test"}));
     linkmessage= url.toString() ;
     return linkmessage ;
   }
 
   static Future<void> initdynamiclink (BuildContext context)async{
-    MDProvider MDProvid = Provider.of<MDProvider>(context,listen: false);
+    MDProvider MDProvid = Provider.of<MDProvider>(context);
 
     final instancaLink = await FirebaseDynamicLinks.instance.getInitialLink() ;
 
@@ -49,7 +55,7 @@ class FirebaseDynamicLink {
       ) ;
 
       await Provider.of<MDProvider>(context).FindMD(temp) ;
-      Share.share("DD") ;
+
 
       showToast(context, "correct") ;
 

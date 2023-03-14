@@ -128,7 +128,8 @@ class PreviewScreen extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(20)),
-              color: Color(0xFFE9F8F9),
+              color: Color(0xE0FFFFFF),
+              // color: Color(0xFFE9F8F9),
 
               boxShadow: [
                 BoxShadow(
@@ -168,7 +169,8 @@ class PreviewScreen extends StatelessWidget {
                       vertical: 10.0, horizontal: 10.0),
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Color(0xFFE9F8F9),
+                    color: Color(0xE0FFFFFF),
+                    // color: Color(0xFFE9F8F9),
 
                     boxShadow: [
                       BoxShadow(

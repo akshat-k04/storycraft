@@ -130,7 +130,8 @@ class ProfileState extends State<Profile>{
                 padding: const EdgeInsets.all(40),
                 width: 330,
                 decoration: const BoxDecoration(
-                  color: Colors.white,
+                  // color: Colors.white,
+                  color: Color(0xE0FFFFFF),
                   borderRadius: BorderRadius.all(Radius.circular(20)),
 
                 ),

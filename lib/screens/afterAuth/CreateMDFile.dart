@@ -33,7 +33,6 @@ class MDState extends State<CreateMD> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if (widget.md != null) {
       titlecont.text = "${widget.md.heading}";
@@ -153,7 +152,8 @@ class MDState extends State<CreateMD> {
                       vertical: 10.0, horizontal: 10.0),
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(30)),
-                    color: Color(0xFFE9F8F9),
+                    color: Color(0xE0FFFFFF),
+                    // color: Color(0xFFE9F8F9),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black12,
@@ -186,7 +186,8 @@ class MDState extends State<CreateMD> {
                         vertical: 10.0, horizontal: 10.0),
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
-                      color: Color(0xFFE9F8F9),
+                      color: Color(0xE0FFFFFF),
+                      // color: Color(0xFFE9F8F9),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black12,
@@ -260,7 +261,6 @@ class MDState extends State<CreateMD> {
                               result = await FilePicker.platform.pickFiles(
                                   type: FileType.custom,
                                   allowedExtensions: ['md']);
-                              //TODO:- upload function
 
                               if (result != null) {
                                 File file = File("${result.files.single.path}");

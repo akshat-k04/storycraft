@@ -32,7 +32,6 @@ class HomeState extends State<HomePage> {
 
   @override
   void initState(){
-    // TODO: implement initState
     super.initState();
     FirebaseDynamicLink.initdynamiclink(context) ;
 
@@ -80,13 +79,17 @@ class HomeState extends State<HomePage> {
           backgroundColor: Colors.transparent
             ,
 
-          floatingActionButton: (!MDProvid.longprs)?Column(
+          floatingActionButton: Column(
             children: [
               const Expanded(child: SizedBox()),
               FloatingActionButton(
                 heroTag: "TODO",
                 tooltip: "TODOS",
                 onPressed: () async{
+                  if(MDProvid.longprs){
+                    MDProvid.changelong() ;
+                    MDProvid.updateIndx(-1) ;
+                  }
                   await Future.delayed(const Duration(milliseconds: 100)) ;
                   Navigator.of(context).push(createRoute("goal",-1));
                 },
@@ -100,6 +103,10 @@ class HomeState extends State<HomePage> {
                 tooltip: "Add markdowns",
 
                 onPressed: () async{
+                  if(MDProvid.longprs){
+                    MDProvid.changelong() ;
+                    MDProvid.updateIndx(-1) ;
+                  }
                   await Future.delayed(const Duration(milliseconds: 100)) ;
                   Navigator.of(context).push(createRoute("create",-1));
                 },
@@ -107,7 +114,7 @@ class HomeState extends State<HomePage> {
                 child: const Icon(color: Color(0xFF2C3333), Icons.add),
               ),
             ],
-          ):null,
+          ),
 
 
           body: SingleChildScrollView(
@@ -125,8 +132,12 @@ class HomeState extends State<HomePage> {
                       const SizedBox(
                         width: 20,
                       ),
-                      (!MDProvid.longprs)? GestureDetector(
+                       GestureDetector(
                         onTap: (){
+                          if(MDProvid.longprs){
+                            MDProvid.changelong() ;
+                            MDProvid.updateIndx(-1) ;
+                          }
                             Navigator.of(context).push(createRoute("profile",-1));
 
                         },
@@ -137,7 +148,7 @@ class HomeState extends State<HomePage> {
                             size: 50,
 
                         ),
-                      ):const SizedBox(),
+                      ),
 
                       const SizedBox(width: 20,) ,
                       (!MDProvid.longprs)?Expanded(child:InputIt(readonly: false,hint: "search",controller: _query,)):const SizedBox(),
@@ -249,6 +260,7 @@ class HomeState extends State<HomePage> {
                   children: [
                     const SizedBox(
                       width: 30,
+                      height: 50,
                     ),
                     Text("Today\n${"${DateTime.now()}".split(" ")[0]}",style: const TextStyle(
                       color:Colors.white,
@@ -258,7 +270,7 @@ class HomeState extends State<HomePage> {
                     const Expanded(child: SizedBox()),
 
 
-                    (!MDProvid.longprs)?Container(
+                    Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       decoration:  BoxDecoration(
                         color: Colors.white,
@@ -278,6 +290,10 @@ class HomeState extends State<HomePage> {
                           );
                         }).toList(),
                         onChanged: (String? newValue) {
+                          if(MDProvid.longprs){
+                            MDProvid.changelong() ;
+                            MDProvid.updateIndx(-1) ;
+                          }
                           setState(() {
                             dropdownValue = newValue!;
 
@@ -296,7 +312,7 @@ class HomeState extends State<HomePage> {
                           });
                         },
                       ),
-                    ):const SizedBox(),
+                    ),
                     const SizedBox(
                       width: 20,
                     )

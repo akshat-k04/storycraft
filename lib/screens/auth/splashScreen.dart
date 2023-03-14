@@ -24,7 +24,6 @@ class StateSplash extends State<SplashScreen>{
   bool fetch = false  ;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     nevigate();
   }
@@ -58,7 +57,6 @@ class StateSplash extends State<SplashScreen>{
       setState(() {
         fetch =false ;
       });
-      //TODO:- get data of user
       Navigator.of(context).pushAndRemoveUntil(createRoute('home'),(Route<dynamic> route) => false);
     }
     else {
@@ -98,9 +96,7 @@ class StateSplash extends State<SplashScreen>{
                 repeatForever: true,
                 pause: Duration(seconds: 2),
                 animatedTexts: [
-                  TypewriterAnimatedText('Fetching data!'),
-                  TypewriterAnimatedText('Fetching data!'),
-
+                  TypewriterAnimatedText('Fetching data!',speed: Duration(milliseconds: 100)),
                 ],
 
               ),

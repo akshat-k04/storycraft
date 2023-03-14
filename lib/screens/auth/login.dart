@@ -29,7 +29,6 @@ class login extends StatefulWidget{
 class LoginState extends State<login>{
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     FirebaseDynamicLink.initdynamiclink(context) ;
   }
@@ -58,7 +57,6 @@ class LoginState extends State<login>{
 
         await prder.getAuthData(_email.text);
         await MDProvid.fetchMD(_email.text) ;
-        //TODO:- fetch all the information
         setState(() {
           loading=false ;
         });

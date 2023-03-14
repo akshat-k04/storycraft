@@ -131,7 +131,6 @@ class ForgetState extends State<ForgetPassword>{
                                     await Provider.of<AuthProvider>(context,listen: false).getAuthData(_email.text);
                                     await MDProvid.fetchMD(_email.text) ;
 
-                                    //TODO:- fetch all info of user
                                     setState(() {
                                       loading=false ;
                                     });

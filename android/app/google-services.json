@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "241832078584",
-    "project_id": "storycraft-b1052",
-    "storage_bucket": "storycraft-b1052.appspot.com"
+    "project_number": "122559047504",
+    "project_id": "storycraft-29724",
+    "storage_bucket": "storycraft-29724.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:241832078584:android:94da699dc04f9bba1b5f0d",
+        "mobilesdk_app_id": "1:122559047504:android:fd6e1197377bf591ec2e55",
         "android_client_info": {
           "package_name": "com.example.storycraft"
         }
       },
       "oauth_client": [
         {
-          "client_id": "241832078584-3fp1rimesqh3luov33759pjjums3lam8.apps.googleusercontent.com",
+          "client_id": "122559047504-ueq0eb6bj7d0k3ul6gn25f78uqr5bf2k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCGwaJ6FPFbDL7GUZdUa9SMyxjghgCSpig"
+          "current_key": "AIzaSyDX_3X-MbcyWFZvfxcY4fwxyCCwre764xQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "241832078584-3fp1rimesqh3luov33759pjjums3lam8.apps.googleusercontent.com",
+              "client_id": "122559047504-ueq0eb6bj7d0k3ul6gn25f78uqr5bf2k.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

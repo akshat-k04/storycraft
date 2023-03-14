@@ -26,7 +26,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -50,20 +53,10 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCGwaJ6FPFbDL7GUZdUa9SMyxjghgCSpig',
-    appId: '1:241832078584:android:94da699dc04f9bba1b5f0d',
-    messagingSenderId: '241832078584',
-    projectId: 'storycraft-b1052',
-    storageBucket: 'storycraft-b1052.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBSC_5K5qauL9c3lbJ_Pxc7A95Zfz_3xnQ',
-    appId: '1:241832078584:ios:01712c5fb3ac8c071b5f0d',
-    messagingSenderId: '241832078584',
-    projectId: 'storycraft-b1052',
-    storageBucket: 'storycraft-b1052.appspot.com',
-    iosClientId: '241832078584-c1745u61gtd365siphclip6q754d3m7v.apps.googleusercontent.com',
-    iosBundleId: 'com.example.storycraft',
+    apiKey: 'AIzaSyDX_3X-MbcyWFZvfxcY4fwxyCCwre764xQ',
+    appId: '1:122559047504:android:fd6e1197377bf591ec2e55',
+    messagingSenderId: '122559047504',
+    projectId: 'storycraft-29724',
+    storageBucket: 'storycraft-29724.appspot.com',
   );
 }
