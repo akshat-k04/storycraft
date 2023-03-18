@@ -8,7 +8,6 @@ import 'package:storycraft/customWidget/LongpressMDcard.dart';
 import 'package:storycraft/customWidget/mdHeading.dart';
 import 'package:storycraft/screens/afterAuth/previewScreen.dart';
 
-import '../../API/firebaseDeepLinking.dart';
 import '../../Providers/Md.dart';
 import '../../Providers/color.dart';
 import 'CreateMDFile.dart';
@@ -33,7 +32,7 @@ class HomeState extends State<HomePage> {
   @override
   void initState(){
     super.initState();
-    FirebaseDynamicLink.initdynamiclink(context) ;
+
 
   }
 
@@ -225,7 +224,7 @@ class HomeState extends State<HomePage> {
                           child: AnimatedTextKit(
                             totalRepeatCount: 1,
                             animatedTexts: [
-                              TyperAnimatedText(' ',speed: const Duration(milliseconds: 1400)),
+                              TyperAnimatedText(' ',speed: const Duration(milliseconds: 1600)),
                               TyperAnimatedText(nickname[0],speed: const Duration(milliseconds: 200)),
 
                             ],
@@ -339,7 +338,7 @@ class HomeState extends State<HomePage> {
                       Text((MDProvid.MDlist.isEmpty)?"Add Markdown":"No MD Found"
                         ,style: const TextStyle(
                             fontSize: 30,
-                            fontFamily: "helloFont"
+                            fontFamily: "ubantu"
                         ),),
                     ],
                   ))

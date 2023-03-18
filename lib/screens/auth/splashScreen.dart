@@ -1,5 +1,4 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,7 +7,6 @@ import 'package:storycraft/screens/auth/login.dart';
 import '../../Providers/Auth.dart';
 import '../../Providers/Md.dart';
 import '../../Providers/color.dart';
-import '../../firebase_options.dart';
 import '../afterAuth/homePage.dart';
 
 class SplashScreen extends StatefulWidget{
@@ -39,9 +37,9 @@ class StateSplash extends State<SplashScreen>{
       colrPrder.changecolor(l) ;
     }
     String? email = sp.getString('email') ;
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+    // await Firebase.initializeApp(
+    //   options: DefaultFirebaseOptions.currentPlatform,
+    // );
     await Future.delayed(const Duration(seconds: 2)) ;
 
     print ("done for firebase") ;

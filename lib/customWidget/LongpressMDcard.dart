@@ -4,7 +4,6 @@ import 'package:document_file_save_plus/document_file_save_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:storycraft/API/firebaseDeepLinking.dart';
 import 'package:storycraft/screens/afterAuth/CreateMDFile.dart';
 import 'package:storycraft/screens/afterAuth/previewScreen.dart';
 
@@ -65,10 +64,9 @@ class PressedMDCard extends StatelessWidget {
               )),
           IconButton(
               onPressed: () async {
-                String generatedLink = await FirebaseDynamicLink.createLink(
-                    MDProvid.filteredMD(MDProvid.Query)[inde]);
+
                 await Future.delayed(const Duration(milliseconds: 300));
-                Share.share(generatedLink);
+                Share.share("");
               },
               icon: const Icon(
                 Icons.share,

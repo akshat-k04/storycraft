@@ -11,7 +11,6 @@ import 'package:storycraft/customWidget/Button.dart';
 import 'package:storycraft/customWidget/InputField.dart';
 import 'package:storycraft/screens/auth/ForgetPassword.dart';
 
-import '../../API/firebaseDeepLinking.dart';
 import '../../Providers/Md.dart';
 import '../../Providers/color.dart';
 
@@ -30,7 +29,6 @@ class LoginState extends State<login>{
   @override
   void initState() {
     super.initState();
-    FirebaseDynamicLink.initdynamiclink(context) ;
   }
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();

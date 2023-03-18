@@ -45,8 +45,6 @@ dependencies:
   uuid: ^3.0.7
   pdf: ^3.9.0
   share_plus: ^6.3.1
-  firebase_core: ^2.7.1
-  firebase_dynamic_links: ^5.0.16
   document_file_save_plus: ^2.0.0
   file_picker: ^5.2.5
   animated_text_kit: ^4.2.2
