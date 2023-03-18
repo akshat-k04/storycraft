@@ -15,8 +15,7 @@ class PreviewScreen extends StatelessWidget {
   final MDString;
   final head ;
   final dat;
-  String ? email ;
-  PreviewScreen({super.key, required this.MDString,required this.head,required this.dat,this.email});
+  PreviewScreen({super.key, required this.MDString,required this.head,required this.dat});
 
   void processIt(BuildContext context){
 
@@ -34,8 +33,9 @@ class PreviewScreen extends StatelessWidget {
 
         MDProvid.addMD(temper);
 
-      Navigator.of(context).pop(
-          createRoute("home"));
+      Navigator.of(context).pushAndRemoveUntil(
+          createRoute("home"),(
+          Route<dynamic> route) => false);
 
   }
 
@@ -43,162 +43,178 @@ class PreviewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthProvider prder = Provider.of<AuthProvider>(context,listen: false);
     ColorProvider colrPrder = Provider.of<ColorProvider>(context) ;
+    MDProvider mdp =Provider.of<MDProvider>(context,listen: false) ;
 
-    return Scaffold(
-        floatingActionButton: (prder.login==true && email!=null&& email!=prder.Email)?FloatingActionButton(
-          heroTag: "logintrue",
-        onPressed: () {
-          processIt(context) ;
-        },
+    // print(email) ;
+    return WillPopScope(
 
-          child: const Icon(
-            Icons.save_alt,color: Colors.black54,
-          ),
-      ) :
-        (prder.login==false)?FloatingActionButton(
-          heroTag: "loginfalse",
-
-          child: const Icon(
-            Icons.login_rounded,
-            color: Colors.black,
-          ),
+      onWillPop: ()async{
+        if(prder.login==true){
+          Navigator.of(context).pushAndRemoveUntil(
+              createRoute("home"),(Route<dynamic> route) => false);
+        }
+        else {
+          Navigator.of(context).pushAndRemoveUntil(
+              createRoute("login"),(Route<dynamic> route) => false);
+        }
+        return false ;
+      },
+      child: Scaffold(
+          floatingActionButton: (prder.login==true &&mdp.DynamicLinkMD.email!=prder.Email)?FloatingActionButton(
+            heroTag: "logintrue",
           onPressed: () {
-            showToast(context, "ff");
-            Navigator.of(context).pop(
-                createRoute("login"));
+            processIt(context) ;
           },
-
-        ):null,
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
-            color: Color(colrPrder.color),
-          ),
-          child:Column(
-            children: [
-
-              const SizedBox(
-                height: 65,
-              ),
-              Row(
-                children: const [
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Text(
-                    "Preview ",
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        decoration: TextDecoration.none,
-                        fontSize: 43,
-                        fontFamily: "roboto",
-                        fontWeight:FontWeight.w500,
-                        color: Color(0xFFFF2929)),
-                  ),
-
-                ],
-              ),
-          Row(
-            children:const [
-              SizedBox(
-                width: 20,
-              ),
-               Text(
-                "Screen",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    decoration: TextDecoration.none,
-                    fontSize: 43,
-                    fontFamily: "roboto",
-                    fontWeight:FontWeight.w500,
-                    color: Color(0xFFF1FF4E)),
-
-              ),
-            ],
-          ),
-
-
-              const SizedBox(
-                height: 40,
-              ),
-
-          Container(
-            height: 80,
-            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              color: Color(0xE0FFFFFF),
-              // color: Color(0xFFE9F8F9),
-
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 4.0, // soften the shadow
-                  spreadRadius: 2.0, //extend the shadow
-                )
-              ],
+            backgroundColor: Colors.white,
+            child: const Icon(
+              Icons.save_alt,color: Colors.black54,
             ),
-            child: Row(
+        ) :
+          (prder.login==false)?FloatingActionButton(
+            heroTag: "loginfalse",
+            backgroundColor: Colors.white,
+            child: const Icon(
+              Icons.login_rounded,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              showToast(context, "ff");
+              Navigator.of(context).pop(
+                  createRoute("login"));
+            },
+
+          ):null,
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+              color: Color(colrPrder.color),
+            ),
+            child:Column(
               children: [
+
                 const SizedBox(
+                  height: 65,
+                ),
+                Row(
+                  children: const [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      "Preview ",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          decoration: TextDecoration.none,
+                          fontSize: 43,
+                          fontFamily: "roboto",
+                          fontWeight:FontWeight.w500,
+                          color: Color(0xFFFF2929)),
+                    ),
+
+                  ],
+                ),
+            Row(
+              children:const [
+                SizedBox(
                   width: 20,
                 ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Text("${head}",
-                      style:const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold
+                 Text(
+                  "Screen",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontSize: 43,
+                      fontFamily: "roboto",
+                      fontWeight:FontWeight.w500,
+                      color: Color(0xFFF1FF4E)),
+
+                ),
+              ],
+            ),
+
+
+                const SizedBox(
+                  height: 40,
+                ),
+
+            Container(
+              height: 80,
+              margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                color: Color(0xE0FFFFFF),
+                // color: Color(0xFFE9F8F9),
+
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 4.0, // soften the shadow
+                    spreadRadius: 2.0, //extend the shadow
+                  )
+                ],
+              ),
+              child: Row(
+                children: [
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text("${head}",
+                        style:const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold
+                        ),
                       ),
                     ),
                   ),
+                ],
+              ),
+            ),
+                const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 10.0),
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 10.0),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      color: Color(0xE0FFFFFF),
+                      // color: Color(0xFFE9F8F9),
+
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 4.0, // soften the shadow
+                          spreadRadius: 2.0, //extend the shadow
+                        )
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(child: Text("Date:${dat}".split(" ")[0])),
+                            const SizedBox(
+                              width: 10,
+                            )
+                          ],
+                        ),
+                        Expanded(child: Markdown(data: MDString,selectable: true,)),
+                      ],
+                    )
+                  ),
                 ),
               ],
             ),
-          ),
-              const SizedBox(
-              height: 20,
-            ),
-            Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 10.0),
-                  margin: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 10.0),
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Color(0xE0FFFFFF),
-                    // color: Color(0xFFE9F8F9),
-
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 4.0, // soften the shadow
-                        spreadRadius: 2.0, //extend the shadow
-                      )
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(child: Text("Date:${dat}".split(" ")[0])),
-                          const SizedBox(
-                            width: 10,
-                          )
-                        ],
-                      ),
-                      Expanded(child: Markdown(data: MDString,selectable: true,)),
-                    ],
-                  )
-                ),
-              ),
-            ],
           ),
         ),
       ),

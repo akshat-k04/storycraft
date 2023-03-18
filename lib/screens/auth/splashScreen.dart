@@ -1,8 +1,15 @@
+import 'dart:async';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:storycraft/customWidget/Toast.dart';
+import 'package:storycraft/model/MDModel.dart';
+import 'package:storycraft/screens/afterAuth/previewScreen.dart';
 import 'package:storycraft/screens/auth/login.dart';
+import 'package:uni_links/uni_links.dart';
 
 import '../../Providers/Auth.dart';
 import '../../Providers/Md.dart';
@@ -10,6 +17,7 @@ import '../../Providers/color.dart';
 import '../afterAuth/homePage.dart';
 
 class SplashScreen extends StatefulWidget{
+
   const SplashScreen({super.key});
 
   @override
@@ -20,11 +28,17 @@ class SplashScreen extends StatefulWidget{
 
 class StateSplash extends State<SplashScreen>{
   bool fetch = false  ;
+
+  Object? _err;
+  bool _initialURILinkHandled = false;
+  StreamSubscription? _streamSubscription;
   @override
   void initState() {
     super.initState();
     nevigate();
   }
+
+
   nevigate()async{
 
     AuthProvider prder = Provider.of<AuthProvider>(context,listen: false);
@@ -37,12 +51,9 @@ class StateSplash extends State<SplashScreen>{
       colrPrder.changecolor(l) ;
     }
     String? email = sp.getString('email') ;
-    // await Firebase.initializeApp(
-    //   options: DefaultFirebaseOptions.currentPlatform,
-    // );
+
     await Future.delayed(const Duration(seconds: 2)) ;
 
-    print ("done for firebase") ;
     if(email!=null){
 
       print ("intil") ;
@@ -55,11 +66,66 @@ class StateSplash extends State<SplashScreen>{
       setState(() {
         fetch =false ;
       });
-      Navigator.of(context).pushAndRemoveUntil(createRoute('home'),(Route<dynamic> route) => false);
+      await _initURIHandler(true) ;
     }
     else {
-      Navigator.of(context).pushReplacement(createRoute('login'));
+      _initURIHandler(false) ;
 
+
+    }
+  }
+
+
+
+  Future<void> _initURIHandler(bool autologin) async {
+    // 1
+    if (!_initialURILinkHandled) {
+      _initialURILinkHandled = true;
+      // 2
+
+        // 3
+        final initialURI = await getInitialUri();
+        // 4
+        if (initialURI != null) {
+          debugPrint("Initial URI received $initialURI");
+          //send to preview screen
+
+
+          String? localid = "${initialURI}".substring(45);
+          print(localid) ;
+          // showToast(context, localid) ;
+          await Provider.of<MDProvider>(context, listen: false).FindMD(
+              MDmodel(localid: localid));
+          if (Provider
+              .of<MDProvider>(context, listen: false)
+              .DynamicLinkMD
+              .localid != localid) {
+            if (autologin) {
+              Navigator.of(context).pushAndRemoveUntil(
+                  createRoute('home', context), (
+                  Route<dynamic> route) => false);
+            }
+            else {
+              Navigator.of(context).pushReplacement(
+                  createRoute('login', context));
+            }
+          }
+          else {
+            Navigator.of(context).pushAndRemoveUntil(
+                createRoute('preview', context), (
+                Route<dynamic> route) => false);
+          }
+        } else {
+          debugPrint("Null Initial URI received");
+          if (autologin) {
+            Navigator.of(context).pushAndRemoveUntil(
+                createRoute('home', context), (Route<dynamic> route) => false);
+          }
+          else {
+            Navigator.of(context).pushReplacement(
+                createRoute('login', context));
+          }
+        }
     }
   }
   @override
@@ -109,12 +175,12 @@ class StateSplash extends State<SplashScreen>{
 }
 
 
-Route createRoute(String st) {
-
+Route createRoute(String st,BuildContext context) {
+  MDProvider mdp =Provider.of<MDProvider>(context,listen: false) ;
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
     (st=="home")?const HomePage():
-
+    (st=="preview")? PreviewScreen(MDString: mdp.DynamicLinkMD.details, head: mdp.DynamicLinkMD.heading, dat: mdp.DynamicLinkMD.date) :
     login(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(0.0, 1.0);

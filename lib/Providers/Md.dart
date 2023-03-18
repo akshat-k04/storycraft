@@ -29,6 +29,7 @@ class MDProvider with ChangeNotifier{
   Future<void> FindMD(MDmodel MD)async{
     print("hhii");
     DynamicLinkMD = await MDAPI.findSpecificMarkdown(MD) ;
+    notifyListeners() ;
   }
 
 

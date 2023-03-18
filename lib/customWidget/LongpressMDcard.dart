@@ -66,7 +66,7 @@ class PressedMDCard extends StatelessWidget {
               onPressed: () async {
 
                 await Future.delayed(const Duration(milliseconds: 300));
-                Share.share("");
+                Share.share("https://storycraft-link.onrender.com?localid=${MDProvid.filteredMD(MDProvid.Query)[inde].localid}");
               },
               icon: const Icon(
                 Icons.share,

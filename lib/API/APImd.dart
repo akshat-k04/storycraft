@@ -40,24 +40,36 @@ class MDAPI {
     static Future<String> addata(MDmodel temp)  async {
       Uri requestUri = Uri.parse("$baseurl/md/add") ;
       var response = await http.post(requestUri,body: temp.mapForMDAdd());
-      var decoded = jsonDecode(response.body).bol;
+      var decoded = jsonDecode(response.body)["bol"];
 
       return decoded ;
     }
 
     static Future<MDmodel> findSpecificMarkdown(MDmodel temp)  async {
       Uri requestUri = Uri.parse("$baseurl/md/find") ;
+      print("sending perticular req of note") ;
       var response = await http.post(requestUri,body: temp.mapForMDFind());
-      var decoded = jsonDecode(response.body).bol;
+      print("get perticular req of note") ;
+      // print(response.body) ;
 
-      return decoded ;
+      var MDmap= jsonDecode(response.body)["bol"];
+      MDmodel temper = MDmodel(
+          heading : MDmap["heading"] ,
+          details : MDmap["details"] ,
+          email : MDmap["email"] ,
+          date : MDmap["date"] ,
+          id : MDmap["_id"],
+          localid:MDmap["localid"]
+      );
+      // return decoded ;
+      return  temper ;
     }
 
 
     static Future<String> deletedata(MDmodel temp )  async {
       Uri requestUri = Uri.parse("$baseurl/md/delete") ;
       var response = await http.post(requestUri,body: temp.mapForMDdelete());
-      var decoded = jsonDecode(response.body).bol;
+      var decoded = jsonDecode(response.body)["bol"];
 
       return decoded ;
     }
@@ -66,7 +78,7 @@ class MDAPI {
     static Future<String> updatedata(MDmodel temp )  async {
       Uri requestUri = Uri.parse("$baseurl/md/update") ;
       var response = await http.post(requestUri,body: temp.mapForMDupdate());
-      var decoded = jsonDecode(response.body).bol;
+      var decoded = jsonDecode(response.body)["bol"];
 
       return decoded ;
     }
