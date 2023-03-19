@@ -335,11 +335,19 @@ class HomeState extends State<HomePage> {
                       const SizedBox(
                         height: 100,
                       ),
-                      Text((MDProvid.MDlist.isEmpty)?"Add Markdown":"No MD Found"
-                        ,style: const TextStyle(
-                            fontSize: 30,
-                            fontFamily: "ubantu"
-                        ),),
+                      Column(
+                        children: [
+                          Text((MDProvid.MDlist.isEmpty)?"Add Markdown":"No MD Found"
+                            ,style: const TextStyle(
+                                fontSize: 30,
+                                fontFamily: "montserrat"
+                            ),
+                          ),
+                          SizedBox(
+                            height: 50,
+                          )
+                        ],
+                      ),
                     ],
                   ))
                       :

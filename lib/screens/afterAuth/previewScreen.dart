@@ -50,17 +50,20 @@ class PreviewScreen extends StatelessWidget {
 
       onWillPop: ()async{
         if(prder.login==true){
-          Navigator.of(context).pushAndRemoveUntil(
-              createRoute("home"),(Route<dynamic> route) => false);
+          // Navigator.of(context).pushAndRemoveUntil(
+          //     createRoute("home"),(Route<dynamic> route) => false);
+          return true ;
+
         }
         else {
           Navigator.of(context).pushAndRemoveUntil(
               createRoute("login"),(Route<dynamic> route) => false);
+          return false ;
+
         }
-        return false ;
       },
       child: Scaffold(
-          floatingActionButton: (prder.login==true &&mdp.DynamicLinkMD.email!=prder.Email)?FloatingActionButton(
+          floatingActionButton: (prder.login==true &&mdp.DynamicLinkMD.email!=null &&mdp.DynamicLinkMD.email!=prder.Email)?FloatingActionButton(
             heroTag: "logintrue",
           onPressed: () {
             processIt(context) ;

@@ -293,7 +293,7 @@ class MDState extends State<CreateMD> {
           Positioned(
             right: 20,
               bottom: 105,
-              child:  FloatingActionButton(
+              child: FloatingActionButton(
                 backgroundColor: Colors.white,
                 onPressed: () {
                   setState(() {
