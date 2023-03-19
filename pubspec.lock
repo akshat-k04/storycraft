@@ -166,6 +166,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_circle_color_picker:
+    dependency: "direct main"
+    description:
+      name: flutter_circle_color_picker
+      sha256: cf3e3fd295c9db89f8650dc72ee7bd1d7f33fcb22e3822c3c1c270877038af7f
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -190,6 +198,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.9"
+  flutter_state_notifier:
+    dependency: "direct main"
+    description:
+      name: flutter_state_notifier
+      sha256: "4a1d282df8ab549d0c6aed0a2cdb486111c830778028f14048980c886bbb74fa"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -200,6 +216,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: aeac15850ef1b38ee368d4c53ba9a847e900bb2c53a4db3f6881cbb3cb684338
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  history_state_notifier:
+    dependency: transitive
+    description:
+      name: history_state_notifier
+      sha256: "5f5cc4d0f689c229c8202a74b937f61a051f09da354892f0d734422b5254d45f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   http:
     dependency: "direct main"
     description:
@@ -232,6 +264,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.5"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      sha256: c33da08e136c3df0190bd5bbe51ae1df4a7d96e7954d1d7249fea2968a72d317
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.8.0"
   lints:
     dependency: transitive
     description:
@@ -360,6 +400,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.9.0"
+  perfect_freehand:
+    dependency: transitive
+    description:
+      name: perfect_freehand
+      sha256: "77bfdd5efb223d120de5cc18c5d6e0b36a835e920521cfe67e281960bad44c9b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   petitparser:
     dependency: transitive
     description:
@@ -416,6 +464,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  scribble:
+    dependency: "direct main"
+    description:
+      name: scribble
+      sha256: e24d00ae57b0b643bebb265a125dadb2b871dc87ec49724a11d50c4d89ca12d4
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.9.1"
   share_plus:
     dependency: "direct main"
     description:
@@ -509,6 +565,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.0"
+  state_notifier:
+    dependency: transitive
+    description:
+      name: state_notifier
+      sha256: "8fe42610f179b843b12371e40db58c9444f8757f8b69d181c97e50787caed289"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.2+1"
   stream_channel:
     dependency: transitive
     description:

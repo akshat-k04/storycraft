@@ -12,7 +12,7 @@ import '../../Providers/Md.dart';
 import '../../Providers/color.dart';
 import 'CreateMDFile.dart';
 import 'Profile.dart';
-import 'goal.dart';
+import 'Drawing.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -93,7 +93,7 @@ class HomeState extends State<HomePage> {
                   Navigator.of(context).push(createRoute("goal",-1));
                 },
                 backgroundColor: Colors.white,
-                child: const Icon(Icons.task_alt_rounded,color: Color(0xFF2C3333),),
+                child: const Icon(Icons.draw_rounded,color: Color(0xFF2C3333),),
               ),
 
               const SizedBox(height: 20,),
@@ -453,7 +453,7 @@ class HomeState extends State<HomePage> {
       (st=="edit")?CreateMD(md:MDProvid.filteredMD(MDProvid.Query)[e]):
       (st=="preview")?PreviewScreen(MDString: "${MDProvid.filteredMD(MDProvid.Query)[e].details}",head:"${MDProvid.filteredMD(MDProvid.Query)[e].heading}",dat: "${MDProvid.filteredMD(MDProvid.Query)[e].date}",):
       (st=="profile")?const Profile() :
-      (st=="goal")?const Goal() :
+      (st=="goal")? Drawing() :
       CreateMD(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.0, 1.0);

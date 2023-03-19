@@ -6,6 +6,7 @@ import 'package:storycraft/Providers/color.dart';
 import 'package:storycraft/screens/auth/splashScreen.dart';
 
 import 'Providers/Auth.dart';
+import 'Providers/DrawProvider.dart';
 import 'Providers/Md.dart';
 
 
@@ -27,12 +28,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create:(context)=>AuthProvider()),
         ChangeNotifierProvider(create: (context)=> MDProvider()),
         ChangeNotifierProvider(create: (context)=> ColorProvider()),
-
+        ChangeNotifierProvider(create: (context)=>DrawProvider()),
         // ChangeNotifierProvider(create: (context)=> tpm())
 
       ],
       child: MaterialApp(
-
+        debugShowCheckedModeBanner: false,
         title: 'StoryCraft',
         theme: ThemeData(
           // This is the theme of your application.

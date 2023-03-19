@@ -49,6 +49,9 @@ dependencies:
   file_picker: ^5.2.5
   animated_text_kit: ^4.2.2
   uni_links: ^0.5.1
+  scribble: ^0.9.1
+  flutter_circle_color_picker: ^0.3.0
+  flutter_state_notifier: ^0.7.3
 
 dev_dependencies:
   flutter_test:
