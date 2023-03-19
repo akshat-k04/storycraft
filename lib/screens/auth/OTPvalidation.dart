@@ -5,6 +5,7 @@ import 'package:storycraft/customWidget/LoadingWidget.dart';
 import 'package:storycraft/customWidget/Toast.dart';
 
 import '../../Providers/Auth.dart';
+import '../../Providers/Md.dart';
 import '../../Providers/color.dart';
 import '../../customWidget/Button.dart';
 import '../../customWidget/InputField.dart';
@@ -40,6 +41,8 @@ class StateOTp extends State<OTPScreen>{
     }
     else{
       prder.login = true ;
+      MDProvider MDProvid = Provider.of<MDProvider>(context,listen: false);
+      await MDProvid.fetchMD(prder.Email) ;
       setState(() {
         loading=false ;
       });
